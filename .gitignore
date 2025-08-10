@@ -1,0 +1,22 @@
+# 忽略 Python 虚拟环境
+# 这能防止将项目依赖（venv 文件夹）提交到 Git 仓库，保持仓库轻量。
+.venv/
+
+# 忽略 Python 缓存和编译文件
+# 这些文件是 Python 解释器自动生成的，不应纳入版本控制。
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 忽略 IDE 和编辑器配置文件
+# 这些是编辑器本地生成的配置，通常不应在团队中共享。
+# Visual Studio Code
+.vscode/
+# PyCharm
+.idea/
+
+# 忽略敏感的环境变量文件
+# 这些文件可能包含数据库密码、API 密钥等敏感信息，绝不能提交。
+*.env
+.env.*
