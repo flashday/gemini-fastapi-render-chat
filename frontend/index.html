@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini FastAPI 聊天机器人</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h1>Gemini 聊天机器人</h1>
+            <p>由 FastAPI & Render 强力驱动</p>
+        </header>
+        <main id="chat-log" class="chat-log"></main>
+        <div id="loading" class="loading-indicator hidden">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <footer class="chat-footer">
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="user-input" placeholder="输入消息..." autocomplete="off" required>
+                <button type="submit">发送</button>
+            </form>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
