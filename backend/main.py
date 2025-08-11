@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 from fastapi.middleware.cors import CORSMiddleware
 
-from .config import Settings, get_settings
+from config import Settings, get_settings
 
 # 在应用启动前，先配置API并列出可用模型
 settings = get_settings()
