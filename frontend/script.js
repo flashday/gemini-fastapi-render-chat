@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
  
             // 3. 使用 Fetch API 调用后端
-            const response = await fetch('http://127.0.0.1:8000/api/chat', {
+            const response = await fetch('https://gemini-chat-app-z3yd.onrender.com', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
