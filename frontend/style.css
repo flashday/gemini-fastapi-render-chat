@@ -1,161 +1,95 @@
-:root {
-    --bg-color: #f4f6f8;
-    --container-bg: #ffffff;
-    --header-bg: #4a90e2;
-    --user-msg-bg: #dcf8c6;
-    --bot-msg-bg: #e9e9eb;
-    --text-color: #333;
-    --border-color: #e0e0e0;
+/* --- 在文件末尾添加以下样式 --- */
+
+/* 为机器人消息中的 Markdown 内容添加样式 */
+.bot-message p {
+    margin: 0.5em 0;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--bg-color);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.bot-message p:first-child {
+    margin-top: 0;
 }
 
-.chat-container {
-    width: 90%;
-    max-width: 600px;
-    height: 90vh;
-    max-height: 800px;
-    background-color: var(--container-bg);
+.bot-message p:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message h1,
+.bot-message h2,
+.bot-message h3,
+.bot-message h4,
+.bot-message h5,
+.bot-message h6 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.bot-message ul,
+.bot-message ol {
+    padding-left: 1.5em;
+    margin: 0.5em 0;
+}
+
+.bot-message li {
+    margin-bottom: 0.25em;
+}
+
+.bot-message pre {
+    background-color: #2d2d2d; /* 深色代码块背景 */
+    color: #f1f1f1; /* 浅色代码文本 */
+    padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    overflow-x: auto; /* 代码过长时可滚动 */
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.9rem;
+    margin: 0.75em 0;
 }
 
-.chat-header {
-    background-color: var(--header-bg);
-    color: white;
-    padding: 1rem;
-    text-align: center;
+.bot-message code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    background-color: rgba(0, 0, 0, 0.05); /* 行内代码的背景色 */
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
 }
 
-.chat-header h1 {
-    margin: 0;
-    font-size: 1.25rem;
+.bot-message pre code {
+    background-color: transparent; /* 代码块内的 code 元素不需要额外背景 */
+    padding: 0;
+    font-size: inherit; /* 继承 pre 的字体大小 */
 }
 
-.chat-header p {
-    margin: 0.25rem 0 0;
-    font-size: 0.8rem;
-    opacity: 0.9;
+.bot-message blockquote {
+    border-left: 3px solid var(--header-bg);
+    padding-left: 1em;
+    margin: 1em 0;
+    color: #666;
+    font-style: italic;
 }
 
-.chat-log {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+.bot-message a {
+    color: var(--header-bg);
+    text-decoration: none;
 }
 
-.message {
-    padding: 0.75rem 1rem;
-    border-radius: 18px;
-    max-width: 75%;
-    line-height: 1.4;
-    word-wrap: break-word;
+.bot-message a:hover {
+    text-decoration: underline;
 }
 
-.user-message {
-    background-color: var(--user-msg-bg);
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
+.bot-message table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
 }
 
-.bot-message {
-    background-color: var(--bot-msg-bg);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-}
-
-.error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    align-self: center;
-    text-align: center;
-}
-
-.loading-indicator {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-}
-
-.loading-indicator span {
-    width: 8px;
-    height: 8px;
-    margin: 0 4px;
-    background-color: var(--header-bg);
-    border-radius: 50%;
-    display: inline-block;
-    animation: bounce 1.4s infinite ease-in-out both;
-}
-
-.loading-indicator span:nth-child(1) {
-    animation-delay: -0.32s;
-}
-
-.loading-indicator span:nth-child(2) {
-    animation-delay: -0.16s;
-}
-
-@keyframes bounce {
-    0%, 80%, 100% {
-        transform: scale(0);
-    }
-    40% {
-        transform: scale(1.0);
-    }
-}
-
-.chat-footer {
-    padding: 1rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.chat-form {
-    display: flex;
-    gap: 0.5rem;
-}
-
-#user-input {
-    flex-grow: 1;
-    padding: 0.75rem;
+.bot-message th,
+.bot-message td {
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    font-size: 1rem;
+    padding: 0.5em 0.75em;
+    text-align: left;
 }
 
-#user-input:focus {
-    outline: none;
-    border-color: var(--header-bg);
-}
-
-.chat-form button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    background-color: var(--header-bg);
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s;
-}
-
-.chat-form button:hover {
-    background-color: #3a7bc8;
-}
-
-.hidden {
-    display: none;
+.bot-message th {
+    background-color: var(--bg-color);
+    font-weight: 600;
 }

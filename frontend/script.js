@@ -15,16 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message');
             
-            // 根据角色添加不同的 CSS 类
+            // 根据角色添加不同的 CSS 类和内容处理方式
             if (message.role === 'user') {
                 messageElement.classList.add('user-message');
+                messageElement.textContent = message.content; // 用户消息作为纯文本处理
             } else if (message.role === 'model') {
                 messageElement.classList.add('bot-message');
+                // 使用 marked.js 将 Markdown 转换为 HTML
+                messageElement.innerHTML = marked.parse(message.content); 
             } else {
                 messageElement.classList.add('error-message');
+                messageElement.textContent = message.content; // 错误消息作为纯文本处理
             }
             
-            messageElement.textContent = message.content;
             chatLog.appendChild(messageElement);
         });
         // 自动滚动到最新消息
@@ -46,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
  
         try {
             // 2. 构建发送到后端的请求体
-            // 注意：我们发送的是当前消息和之前的历史
             const requestBody = {
                 message: userMessage,
                 history: chatHistory.slice(0, -1) // 发送除当前用户消息外的所有历史
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
             const data = await response.json();
  
-            // 4. 将机器人回复添加到历史记录并更新 UI
+            // 4. 将机器人回复添加到历史记录
             chatHistory.push({ role: 'model', content: data.reply });
  
         } catch (error) {
@@ -86,6 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     chatForm.addEventListener('submit', handleFormSubmit);
  
     // 初始欢迎语
-    chatHistory.push({ role: 'model', content: '你好！我是 Gemini。有什么可以帮助你的吗？' });
+    chatHistory.push({ role: 'model', content: '你好！我是 Gemini。有什么可以帮助你的吗？我现在支持 **Markdown** 格式了！' });
     renderChatLog();
 });
