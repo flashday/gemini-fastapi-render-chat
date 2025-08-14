@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 新增配置 ---
+    // 在本地开发时，请将此URL更改为您的本地后端地址
+    //const API_BASE_URL = 'http://127.0.0.1:8000'; 
+    // 部署到生产环境前，请将其改回生产环境的URL
+     const API_BASE_URL = 'https://gemini-chat-app-z3yd.onrender.com';    
+
+
     // 获取 DOM 元素
     const chatLog = document.getElementById('chat-log');
     const chatForm = document.getElementById('chat-form');
@@ -55,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
  
             // 3. 使用 Fetch API 调用后端
-            const response = await fetch('https://gemini-chat-app-z3yd.onrender.com/api/chat', {
+            const response = await fetch(`${API_BASE_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
